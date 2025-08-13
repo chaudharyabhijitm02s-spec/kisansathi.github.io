@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kisan Sathi | किसान साथी</title>
+
+<!-- Minimal Bootstrap-like CSS (offline) -->
+<style>
+  :root {
+    --primary:#0d6efd; --success:#198754; --warning:#ffc107; --danger:#dc3545;
+    --bg:#f7fafc; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --shadow:0 8px 24px rgba(0,0,0,.08);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  .container{width:100%;max-width:980px;margin:0 auto;padding:16px}
+  .row{display:flex;flex-wrap:wrap;margin:-8px}
+  .col{padding:8px;flex:1 0 0}
+  .col-12{flex:0 0 100%;max-width:100%}
+  @media(min-width:768px){.col-md-6{flex:0 0 50%;max-width:50%}}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+  .header{padding:20px 16px 8px;text-align:center}
+  .title{font-size:28px;font-weight:800;line-height:1.1;margin:0}
+  .subtitle{font-size:14px;color:var(--muted);margin-top:6px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:16px;padding:14px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease,filter .2s ease;width:100%}
+  .btn:active{transform:translateY(1px)}
+  .btn-lg{padding:18px 20px;font-size:18px}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-success{background:var(--success);color:#fff}
+  .btn-secondary{background:#111827;color:#fff}
+  .btn-outline{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+  .grid2{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:720px){.grid2{grid-template-columns:repeat(2,1fr)}}
+  .label{font-weight:700;margin-bottom:6px}
+  select,input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;font-size:16px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#eef2ff;font-weight:700;font-size:14px}
+  .section{display:none}
+  .section.active{display:block}
+  .spacer{height:10px}
+  .muted{color:var(--muted)}
+  .footer{padding:24px;text-align:center;font-size:12px;color:var(--muted)}
+  .hero-buttons{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+  @media(min-width:640px){.hero-buttons{grid-template-columns:1fr 1fr}}
+  .chip{font-size:12px;background:#f1f5f9;color:#111827;border-radius:999px;padding:4px 10px;display:inline-block}
+  .tip{border-left:4px solid var(--success);padding:12px 14px;background:#ecfdf5;border-radius:12px}
+  .warn{border-left:4px solid var(--warning);padding:12px 14px;background:#fffbeb;border-radius:12px}
+  .danger{border-left:4px solid var(--danger);padding:12px 14px;background:#fef2f2;border-radius:12px}
+  .icon{font-size:20px}
+  .nav{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+  .backbtn{cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .divider{height:1px;background:#e5e7eb;margin:12px 0}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="title">Kisan Sathi &middot; किसान साथी</h1>
+      <p class="subtitle">Farmer-friendly crop advice & weather—on your phone.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Home -->
+    <section id="home" class="section active">
+      <div class="card">
+        <div class="grid2">
+          <div>
+            <div class="pill">📲 Mobile-Friendly · बड़ा फ़ॉन्ट</div>
+            <h2 style="margin:12px 0 6px;">Welcome / स्वागत है</h2>
+            <p class="muted">Choose a service below. नीचे सेवा चुनें:</p>
+            <div class="hero-buttons">
+              <button id="goAdvisory" class="btn btn-success btn-lg" aria-label="Crop Advisory">
+                🌾 <span>Crop Advisory · फ़सल सलाह</span>
+              </button>
+              <button id="goWeather" class="btn btn-primary btn-lg" aria-label="Weather Updates">
+                ⛅ <span>Weather Updates · मौसम</span>
+              </button>
+            </div>
+            <div class="spacer"></div>
+            <div class="tip">💡 सुझाव: नेटवर्क नहीं है तो भी फ़सल सलाह ऑफ़लाइन काम करेगी। Weather के लिए इंटरनेट चाहिए।</div>
+          </div>
+          <div class="card" style="background:#f8fafc">
+            <h3 style="margin:0 0 8px;">Quick Help / त्वरित सहायता</h3>
+            <ul style="margin:0 0 6px 18px">
+              <li>फ़सल चुने → बुवाई समय, सिंचाई, खाद, कीट/रोग प्रबंधन</li>
+              <li>मौसम देखें → तापमान, आर्द्रता, बारिश की संभावना, सरल सलाह</li>
+            </ul>
+            <span class="chip">हिंदी लेबल</span>
+            <span class="chip">Large Buttons</span>
+            <span class="chip">Offline Crop Data</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crop Advisory -->
+    <section id="advisory" class="section">
+      <div class="nav">
+        <span class="backbtn" data-back="home">← Back / वापस</span>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0;">🌾 Crop Advisory · फ़सल सलाह</h2>
+        <div class="row">
+          <div class="col col-12 col-md-6">
+            <label class="label">Select Crop · फ़सल चुनें</label>
+            <select id="cropSelect" aria-label="Select crop">
+              <option value="">-- Choose / चुनें --</option>
+              <option value="wheat">Wheat · गेहूँ</option>
+              <option value="paddy">Paddy · धान</option>
+              <option value="maize">Maize · मक्का</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="adviceWrap" style="display:none;margin-top:16px">
+          <div class="divider"></div>
+          <div class="row">
+            <div class="col col-12 col-md-6">
+              <div class="card">
+                <h3 style="margin:0 0 8px;">🗓️ Sowing Time · बुवाई समय</h3>
+                <div id="sowing"></div>
+              </div>
+            </div>
+            <div class="col col-12 col-md-6">
+              <div class="card">
+                <h3 style="margin:0 0 8px;">🚿 Irrigation · सिंचाई</h3>
+                <div id="irrigation"></div>
+              </div>
+            </div>
+            <div class="col col-12 col-md-6">
+              <div class="card">
+                <h3 style="margin:0 0 8px;">🧪 Fertilizer · खाद सिफारिश</h3>
+                <div id="fertilizer"></div>
+              </div>
+            </div>
+            <div class="col col-12 col-md-6">
+              <div class="card">
+                <h3 style="margin:0 0 8px;">🐛 Pest/Disease · कीट/रोग</h3>
+                <div id="pest"></div>
+              </div>
+            </div>
+          </div>
+          <div class="spacer"></div>
+          <div class="tip">ℹ️ ये डेटा डेमो (नमूना) JSON से है—स्थानीय कृषि विभाग/कृषि विश्वविद्यालय की सलाह का पालन करें।</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weather Updates -->
+    <section id="weather" class="section">
+      <div class="nav">
+        <span class="backbtn" data-back="home">← Back / वापस</span>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0;">⛅ Weather Updates · मौसम</h2>
+        <div class="row">
+          <div class="col col-12 col-md-6">
+            <button id="locBtn" class="btn btn-primary btn-lg">📍 Use My Location · मेरी लोकेशन</button>
+          </div>
+          <div class="col col-12 col-md-6">
+            <div class="label">Or enter city · शहर दर्ज करें</div>
+            <div class="row" style="gap:8px">
+              <div class="col col-12" style="padding:0">
+                <input id="cityInput" placeholder="e.g., Ramnagar, Dehradun" />
+              </div>
+              <div class="col col-12" style="padding:0">
+                <button id="cityBtn" class="btn btn-outline">🔍 Fetch Weather</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="wxResult" style="display:none;margin-top:16px">
+          <div class="divider"></div>
+          <div class="row">
+            <div class="col col-12 col-md-6">
+              <div class="card">
+                <h3 style="margin:0 0 8px;">Current Weather · वर्तमान मौसम</h3>
+                <div id="wxNow"></div>
+              </div>
+            </div>
+            <div class="col col-12 col-md-6">
+              <div class="card">
+                <h3 style="margin:0 0 8px;">Advice · सलाह</h3>
+                <div id="wxAdvice" class="tip"></div>
+              </div>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:8px">Source: OpenWeatherMap</p>
+        </div>
+        <div id="wxError" style="display:none;margin-top:12px" class="danger">⚠️ Could not fetch weather. Check internet or API key.</div>
+        <div class="warn" style="margin-top:12px">
+          🔑 <b>API Key:</b> Open this file in a text editor and replace <code>YOUR_OPENWEATHERMAP_API_KEY</code> with your key.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© <span id="year"></span> Kisan Sathi · Built for farmers · किसानों के लिए</footer>
+
+<script>
+/* ---------- Simple Router ---------- */
+const sections = {
+  home: document.getElementById('home'),
+  advisory: document.getElementById('advisory'),
+  weather: document.getElementById('weather')
+};
+function showSection(id){
+  Object.values(sections).forEach(s=>s.classList.remove('active'));
+  sections[id].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('goAdvisory').addEventListener('click',()=>showSection('advisory'));
+document.getElementById('goWeather').addEventListener('click',()=>showSection('weather'));
+document.querySelectorAll('.backbtn').forEach(b=>b.addEventListener('click',e=>showSection(e.currentTarget.dataset.back)));
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Sample Crop Data (JSON) ---------- */
+const cropData = {
+  "wheat": {
+    "name":"Wheat · गेहूँ",
+    "sowing":"अक्टूबर–नवंबर (रबी)। हल्की/मध्यम दोमट मिट्टी।",
+    "irrigation":[
+      "पहली सिंचाई: बुवाई के 20–25 दिन बाद (CRI).",
+      "अगली सिंचाई: 40–45, 60–65, 80–85, और दूध भराव चरण पर।"
+    ],
+    "fertilizer":[
+      "N:P:K = 120:60:40 किग्रा/हेक्टेयर (मिट्टी के अनुसार समायोजित)।",
+      "बीजोपचार: कार्बेन्डाज़िम 2g/किग्रा बीज।"
+    ],
+    "pest":[
+      "दीमक/तना भेदक: क्लोरपाइरीफॉस मिट्टी उपचार।",
+      "करनाल बंट: प्रमाणित/उपचारित बीज, रोगग्रस्त बालियों को नष्ट करें।"
+    ]
+  },
+  "paddy": {
+    "name":"Paddy · धान",
+    "sowing":"जून–जुलाई (खरीफ) / जनवरी–फरवरी (रबी, दक्षिण भारत)।",
+    "irrigation":[
+      "रोपाई के बाद 2–3 सेमी पानी, तना बढ़वार में 5–7 सेमी स्थिर जल।",
+      "दूध भराव व बालियाँ निकलते समय नमी सुनिश्चित करें।"
+    ],
+    "fertilizer":[
+      "N:P:K = 100:50:50 किग्रा/हेक्टेयर (क्षेत्र के अनुसार)।",
+      "जिंक सल्फेट 25 किग्रा/हेक्टेयर जहाँ कमी हो।"
+    ],
+    "pest":[
+      "भूरा फुदका/तना छेदक: फेरोमोन ट्रैप, अनुशंसित कीटनाशी का विवेकपूर्ण उपयोग।",
+      "ब्लास्ट रोग: प्रतिरोधी किस्में, ट्राइसीक्लाज़ोल स्प्रे (जरूरत पर)।"
+    ]
+  },
+  "maize": {
+    "name":"Maize · मक्का",
+    "sowing":"मई–जून (खरीफ) / अक्टूबर–नवंबर (रबी) / फरवरी (ग्रीष्म)।",
+    "irrigation":[
+      "मकई के लिए महत्त्वपूर्ण चरण: घुटना, रेशम, दाना भराव।",
+      "जल भराव से बचें; हल्की परंतु नियमित सिंचाई।"
+    ],
+    "fertilizer":[
+      "N:P:K = 120:60:40 किग्रा/हेक्टेयर; N को विभाजित खुराक में दें।",
+      "जिंक की कमी पर ZnSO₄ 25 किग्रा/हेक्टेयर।"
+    ],
+    "pest":[
+      "फॉल आर्मीवर्म: नियमित निगरानी, फेरोमोन ट्रैप, अनुशंसित जैविक/रासायनिक नियंत्रण।",
+      "तना छेदक: समय पर बुवाई और अवशेष प्रबंधन।"
+    ]
+  }
+};
+
+/* ---------- Populate Crop Advisory ---------- */
+const cropSelect = document.getElementById('cropSelect');
+const adviceWrap = document.getElementById('adviceWrap');
+const sowingEl = document.getElementById('sowing');
+const irrigationEl = document.getElementById('irrigation');
+const fertilizerEl = document.getElementById('fertilizer');
+const pestEl = document.getElementById('pest');
+
+function listify(arr){
+  if(Array.isArray(arr)){
+    return '<ul style="margin:0 0 0 18px">' + arr.map(i=>`<li>${i}</li>`).join('') + '</ul>';
+  }
+  return `<p>${arr}</p>`;
+}
+
+cropSelect.addEventListener('change', ()=>{
+  const key = cropSelect.value;
+  if(!key){ adviceWrap.style.display='none'; return; }
+  const d = cropData[key];
+  if(!d){ adviceWrap.style.display='none'; return; }
+  sowingEl.innerHTML = `<p><b>${d.name}</b></p>${listify(d.sowing)}`;
+  irrigationEl.innerHTML = listify(d.irrigation);
+  fertilizerEl.innerHTML = listify(d.fertilizer);
+  pestEl.innerHTML = listify(d.pest);
+  adviceWrap.style.display = 'block';
+});
+
+/* ---------- Weather: OpenWeatherMap ---------- */
+const OWM_KEY = 'bd47a729ab9558c2c28aa44f99c4dc00;
+const wxNowEl = document.getElementById('wxNow');
+const wxAdviceEl = document.getElementById('wxAdvice');
+const wxResult = document.getElementById('wxResult');
+const wxError = document.getElementById('wxError');
+const locBtn = document.getElementById('locBtn');
+const cityBtn = document.getElementById('cityBtn');
+const cityInput = document.getElementById('cityInput');
+
+async function fetchJSON(url){
+  const r = await fetch(url);
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
+}
+
+// Build advice from weather
+function makeAdvice({tempC, humidity, pop, rainMM}){
+  // Simple rules:
+  // High rain prob or rain volume → avoid irrigation
+  // Very hot & dry → recommend light irrigation
+  // Otherwise normal maintenance
+  if((pop !== null && pop >= 0.6) || (rainMM !== null && rainMM > 0)){
+    wxAdviceEl.className = 'danger';
+    return '🌧️ बारिश की संभावना ज्यादा है — सिंचाई टालें / Avoid irrigation & prepare drainage.';
+  }
+  if(tempC >= 35 && humidity < 35){
+    wxAdviceEl.className = 'warn';
+    return '🥵 गर्म व शुष्क मौसम — हल्की सिंचाई/मल्चिंग करें, दोपहर का काम कम करें।';
+  }
+  wxAdviceEl.className = 'tip';
+  return '✅ मौसम सामान्य — नियमित निगरानी और सामान्य रखरखाव करें।';
+}
+
+function fmt(num, unit){ return num==null ? '—' : `${num}${unit}`; }
+
+function showWeatherCard({place, tempC, humidity, pop, rainMM, desc}){
+  wxResult.style.display='block';
+  wxError.style.display='none';
+  wxNowEl.innerHTML = `
+    <div class="grid2">
+      <div><div class="label">📌 स्थान</div><div>${place}</div></div>
+      <div><div class="label">🌡️ तापमान</div><div>${fmt(tempC.toFixed(1),'°C')}</div></div>
+      <div><div class="label">💧 आर्द्रता</div><div>${fmt(humidity,'%')}</div></div>
+      <div><div class="label">☔ बारिश की संभावना (POP)</div><div>${pop===null?'—':Math.round(pop*100)+'%'}</div></div>
+      <div><div class="label">🌧️ अनुमानित वर्षा</div><div>${rainMM===null?'—':rainMM+' mm'}</div></div>
+      <div><div class="label">📝 विवरण</div><div style="text-transform:capitalize">${desc||'—'}</div></div>
+    </div>
+  `;
+  wxAdviceEl.textContent = makeAdvice({tempC, humidity, pop, rainMM});
+}
+
+async function getWeatherByCoords(lat, lon){
+  const base = 'https://api.openweathermap.org/data/2.5';
+  const u1 = `${base}/weather?lat=${lat}&lon=${lon}&appid=${OWM_KEY}&units=metric`;
+  const u2 = `${base}/forecast?lat=${lat}&lon=${lon}&appid=${OWM_KEY}&units=metric&cnt=3`;
+  const [now, fc] = await Promise.all([fetchJSON(u1), fetchJSON(u2)]);
+  const tempC = now.main?.temp ?? null;
+  const humidity = now.main?.humidity ?? null;
+  const desc = now.weather?.[0]?.description ?? '';
+  // Use first forecast block for POP; fall back if absent
+  const first = fc.list?.[0] || {};
+  const pop = (typeof first.pop === 'number') ? first.pop : null;
+  const rainMM = (first.rain && (first.rain['3h'] || first.rain['1h'])) ? (first.rain['3h'] || first.rain['1h']) : (now.rain?.['1h'] ?? null);
+  const place = `${now.name || 'Your area'} (${lat.toFixed(2)}, ${lon.toFixed(2)})`;
+  showWeatherCard({place, tempC, humidity, pop, rainMM, desc});
+}
+
+async function getWeatherByCity(city){
+  // First geocode the city via current weather endpoint (gets coord), then reuse coords for POP
+  const base = 'https://api.openweathermap.org/data/2.5';
+  const u = `${base}/weather?q=${encodeURIComponent(city)}&appid=${OWM_KEY}&units=metric`;
+  const now = await fetchJSON(u);
+  return getWeatherByCoords(now.coord.lat, now.coord.lon);
+}
+
+/* Event handlers */
+locBtn.addEventListener('click', ()=>{
+  wxResult.style.display='none'; wxError.style.display='none';
+  if(!navigator.geolocation){
+    wxError.style.display='block'; wxError.textContent='⚠️ Geolocation not supported on this device.';
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => getWeatherByCoords(pos.coords.latitude, pos.coords.longitude).catch(err=>{
+      wxError.style.display='block'; wxError.textContent='⚠️ Weather fetch failed: '+err.message;
+    }),
+    err => { wxError.style.display='block'; wxError.textContent='⚠️ Location error: '+err.message; },
+    {enableHighAccuracy:true, timeout:12000, maximumAge:60000}
+  );
+});
+
+cityBtn.addEventListener('click', ()=>{
+  const city = cityInput.value.trim();
+  if(!city){ cityInput.focus(); return; }
+  wxResult.style.display='none'; wxError.style.display='none';
+  getWeatherByCity(city).catch(err=>{
+    wxError.style.display='block'; wxError.textContent='⚠️ Weather fetch failed: '+err.message;
+  });
+});
+</script>
+</body>
+</html>
